@@ -10,16 +10,21 @@ app.use(bodyParser.json())
 app.post('/webhook', (req, res) => {
     let reply_token = req.body.events[0].replyToken
     var msg = req.body.events[0].message.text
-    reply(reply_token, msg)
+    var id = req.body.destination
+    reply(reply_token,id, msg )
     res.sendStatus(200)
 })
 app.listen(port)
-function reply(reply_token, msg) {
+function reply(reply_token, id , msg) {
     let headers = {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer {iBtDo4Z7L52/MVHyXpXQukxQ0N/q9ff1tIEh/7Ta2gK4o9AZcdk/c9+xRyaGLfujvj62UGwEGPnozADyH/wbdcgvlcO/aGBvVgKMlpjPFDnkcQPD6hQKlfv8OmgnqjQXyjA5xIhA7qVHkisgX8rMZAdB04t89/1O/w1cDnyilFU=}'
+        'Authorization': 'Bearer {shWHPy2AtysDJ8IkWowJC/NTQgpxu5ddDJ3GwD3eUQ6FcDnZ+Q1VgBrF9xyusFwet9PK5cBPmmxxLthorhuZrL94biE5JuQ+aJjEboIP5dQDLsgXMur0+QiioiMCL+xJxlA3aG5aFRDGy2HhHEPpfgdB04t89/1O/w1cDnyilFU=}'
     }
 
+    if (id === "Ud25f8d3070e87673ed0f8e33e0ea6390"){
+        msg = "check in success"
+        console.log(msg)
+    }
     if (msg === "Big") {
         msg = "หัวควย"
         console.log(msg)
